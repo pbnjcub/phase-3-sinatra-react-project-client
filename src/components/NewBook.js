@@ -45,38 +45,65 @@ const NewBook = () => {
 
     return (
         <div>
-            <h1>Add a New Book Here</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Title:</label>
-                    <input name="title" id="title" type="text" value={newBook.title} onChange={handleChange} autoFocus={true}/>
+            <h1 class="white-text">Add a New Book Here</h1>
+            <form class="col s12" onSubmit={handleSubmit}>
+                <div class="row">
+                    <div class="col s6 white-text">
+                        Book Title:
+                        <div class="input-field inline">
+                            <input class="validate white-text" name="title" id="title" type="text" value={newBook.title} onChange={handleChange} autoFocus={true}/>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="year_published">Year Published:</label>
-                    <input name="year_published" id="year_published" type="text" value={newBook.year} onChange={handleChange}/>
+                <div class="row">
+                    <div class="col s6">
+                        <h5 class="white-text">Year Published:</h5>
+                        <div class="input-field col s6">
+                            <input class="validate white-text" name="year_published" id="year_published" type="text" value={newBook.year} onChange={handleChange}/>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="book_num">Book Number:</label>
-                    <input name="book_num" id="book_num" type="text" value={newBook.book_num} onChange={handleChange}/>
+                
+                <div class="row">
+                    <div class="col s6">
+                        <h5 class="white-text">Book Number:</h5>
+                        <div class="input field-inline">
+                            <input class="validate white-text" name="book_num" id="book_num" type="text" value={newBook.book_num} onChange={handleChange}/>
+                        </div>
+                    </div>                   
                 </div>
-                <div>
-                    <label htmlFor="type_of_book">Type:</label>
-                    <input name="type_of_book" id="type_of_book" type="text" value={newBook.type} onChange={handleChange}/>
+                <div class="row">
+                    <div class="col s6">
+                        <h5 class="white-text">Type of Book:</h5>
+                        <div class="input field-inline">
+                            <input class="validate white-text" name="type_of_book" id="type_of_book" type="text" value={newBook.type} onChange={handleChange}/>
+                        </div>
+                    </div>                  
                 </div>
-                <div>
-                    <label htmlFor="num_pages">Number of Pages:</label>
-                    <input name="num_pages" id="num_pages" type="text" value={newBook.pages} onChange={handleChange}/>
+                <div class="row">
+                    <div class="col s6">
+                        <h5 class="white-text">Number of Pages:</h5>
+                        <div class="input field-inline">
+                            <input class="validate white-text" name="num_pages" id="num_pages" type="text" value={newBook.pages} onChange={handleChange}/>
+                        </div>
+                    </div>                   
                 </div>
-                <div>
-                    <label htmlFor="isbn">ISBN:</label>
-                    <input name="isbn" id="isbn" type="text" value={newBook.isbn} onChange={handleChange}/>
+                <div class="row">
+                    <div class="col s6">
+                        <h5 class="white-text">ISBN:</h5>
+                        <div class="input field-inline">
+                            <input class="validate white-text" name="isbn" id="isbn" type="text" value={newBook.isbn} onChange={handleChange}/>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="isbn">Description:</label>
-                    <textarea name="description" id="isbn" value={newBook.description} onChange={handleChange}/>
+                <div class="row">
+                    <div class="col s12">
+                        <h5 class="white-text">Description:</h5>
+                        <textarea class="materialize-textarea white-text" name="description" id="description" value={newBook.description} onChange={handleChange}/>
+                    </div>
                 </div>
                 <br />
-                <input type="submit" value="Create Book"/>
+                <input class="waves-effect waves-light btn" type="submit" value="Create Book"/>
             </form>
         </div>
     )
