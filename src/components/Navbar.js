@@ -4,15 +4,14 @@ import '../css/materialize.min.css';
 
 const NavBar = () => {
     return (
-        <nav >
-            <div class="nav-wrapper light-blue darken-4" >
-                <a class="brand-logo"><img src="img/The_Expanse_logo.png" alt="The Expanse Logo" width="200"/></a>
+        <nav class="transparent">
+            <div class="nav-wrapper" style={{fontSize:"large"}}>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/books">Books</NavLink></li>
-                    <li><NavLink to="/characters">Characters</NavLink></li>
-                    <li><NavLink to="/books/new">Add New Book</NavLink></li>
-                    <li><NavLink to="/characters/new">Add New Character</NavLink></li>
+                    <li><NavLink to="/"><h5>Home</h5></NavLink></li>
+                    <li><NavLink to="/books"><h5>Books</h5></NavLink></li>
+                    <li><NavLink to="/characters"><h5>Characters</h5></NavLink></li>
+                    <li><NavLink to="/books/new"><h5>Add Book</h5></NavLink></li>
+                    <li><NavLink to="/characters/new"><h5>Add Character</h5></NavLink></li>
                 </ul>
 
             </div>

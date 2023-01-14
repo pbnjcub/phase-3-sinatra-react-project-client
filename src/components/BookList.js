@@ -17,7 +17,7 @@ const BookList = () => {
  
     return (
         <div>
-            <h1 class="blue-text text-darken-2">Books</h1>
+            <h1 class="white-text"><b>Books</b></h1>
             <div class="col s12 m6">
                 {bookCards}
             </div>

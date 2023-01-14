@@ -5,9 +5,9 @@ import {NavLink} from 'react-router-dom'
 const BookCard = ({ book }) => {
     return (
         <li>
-            <NavLink to={`/books/${book.id}`}>
+            <NavLink to={`/books/${book.id}`} style={{color: "white"}}>
                 {book.title}
-            </NavLink> - Type of Book: {book.type_of_book}
+            </NavLink>
         </li>
      )
 }

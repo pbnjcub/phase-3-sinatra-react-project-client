@@ -7,7 +7,9 @@ const CharacterCard = ({ character }) => {
     return (
 
         <li>
-            <NavLink to={`/characters/${character.id}`}>{character.name}</NavLink>
+            <NavLink to={`/characters/${character.id}`} style={{color: "white"}}>
+                {character.name}
+            </NavLink>
         </li>
             
      )

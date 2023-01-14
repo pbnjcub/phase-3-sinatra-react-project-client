@@ -17,7 +17,7 @@ const CharacterList = () => {
  
     return (
         <div class="row">
-            <h1 class="blue-text text-darken-2">Characters</h1>
+            <h1 class="white-text" style={{color: "white"}}><b>Characters</b></h1>
             <div class="col s12 m6">
                 {characterCards}
             </div>
