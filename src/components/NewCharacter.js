@@ -39,7 +39,7 @@ const NewCharacter = () => {
 
 
     return (
-        <div>
+        <div > 
             <h1 class="white-text">Add a New Character Here</h1>
             <form class="col s12" onSubmit={handleSubmit}>
                 <div class="row">

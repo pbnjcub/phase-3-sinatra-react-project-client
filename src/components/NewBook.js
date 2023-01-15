@@ -56,49 +56,49 @@ const NewBook = () => {
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">Year Published:</h5>
-                        <div class="input-field col s6">
+                    <div class="col s6 white-text">
+                        Year Published:
+                        <div class="input-field inline">
                             <input class="validate white-text" name="year_published" id="year_published" type="text" value={newBook.year} onChange={handleChange}/>
                         </div>
                     </div>
                 </div>
                 
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">Book Number:</h5>
+                    <div class="col s6 white-text">
+                        Book Number:
                         <div class="input field-inline">
                             <input class="validate white-text" name="book_num" id="book_num" type="text" value={newBook.book_num} onChange={handleChange}/>
                         </div>
                     </div>                   
                 </div>
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">Type of Book:</h5>
+                    <div class="col s6 white-text">
+                        Type of Book:
                         <div class="input field-inline">
                             <input class="validate white-text" name="type_of_book" id="type_of_book" type="text" value={newBook.type} onChange={handleChange}/>
                         </div>
                     </div>                  
                 </div>
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">Number of Pages:</h5>
+                    <div class="col s6 white-text">
+                        Number of Pages:
                         <div class="input field-inline">
                             <input class="validate white-text" name="num_pages" id="num_pages" type="text" value={newBook.pages} onChange={handleChange}/>
                         </div>
                     </div>                   
                 </div>
                 <div class="row">
-                    <div class="col s6">
-                        <h5 class="white-text">ISBN:</h5>
+                    <div class="col s6 white-text">
+                        ISBN:
                         <div class="input field-inline">
                             <input class="validate white-text" name="isbn" id="isbn" type="text" value={newBook.isbn} onChange={handleChange}/>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12">
-                        <h5 class="white-text">Description:</h5>
+                    <div class="col s12 white-text">
+                        Description:
                         <textarea class="materialize-textarea white-text" name="description" id="description" value={newBook.description} onChange={handleChange}/>
                     </div>
                 </div>
