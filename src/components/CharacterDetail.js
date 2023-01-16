@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 
 import BookCard from './BookCard'
 
-const CharacterDetail = () => {
+const CharacterDetail = ({changeBackground}) => {
     const [character, setCharacter] = useState([])
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
@@ -12,12 +12,12 @@ const CharacterDetail = () => {
         const fetchData = async () => {
             const resp = await fetch(`http://localhost:9393/characters/${id}`)
             const data = await resp.json()
-            console.log(data)
             setCharacter(data)
             setLoading(false)
         }
         fetchData()
             .catch(console.error)
+
     }, [])
 
 
@@ -27,8 +27,8 @@ const CharacterDetail = () => {
     } else {
         const bookCards = character.books.map((book, index) => <BookCard key={index} book = {book} character={character}/>)
         return (
-            <div>
-                <h1>{character.name}</h1>
+            <div class="row white-text">
+                <h1><b>{character.name}</b></h1>
                 <div>
                     <span style={{ fontWeight: 'bold' }}>Description: </span> {character.description}
                     <br />
