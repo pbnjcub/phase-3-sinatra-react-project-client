@@ -1,8 +1,10 @@
 import React, { useEffect, useState} from 'react'
 import BookCard from './BookCard'
+import { useLocation} from 'react-router-dom'
 
-const BookList = () => {
+const BookList = ({changeBackground}) => {
     const [ books, setBooks] = useState([])
+    const location = useLocation();
 
     useEffect(() => {
         async function fetchData() {
@@ -11,6 +13,7 @@ const BookList = () => {
             setBooks(data);
         }
         fetchData()
+        changeBackground(location.pathname)
     }, [])
 
     const bookCards = books.map((book, index) => <BookCard key={index} book={book}/>)

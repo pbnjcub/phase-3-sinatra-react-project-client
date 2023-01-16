@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
 
 
-const NewCharacter = () => {
+const NewCharacter = ({changeBackground}) => {
 
     const [newCharacter, setNewCharacter] = useState({
         name: "",
@@ -10,6 +11,12 @@ const NewCharacter = () => {
         location: "",
     })
     const navigate = useNavigate()
+    const location = useLocation();
+
+    useEffect(() => {
+        changeBackground(location.pathname)
+    }, [])
+
 
     function handleChange(e) {
         setNewCharacter({
@@ -43,8 +50,8 @@ const NewCharacter = () => {
             <h1 class="white-text">Add a New Character Here</h1>
             <form class="col s12" onSubmit={handleSubmit}>
                 <div class="row">
-                    <div class="col s12">
-                        <h5 class="white-text">Name of Character:</h5>
+                    <div class="col s6 white-text">
+                        Name of Character:
                         <div class="input-field inline">
                             <input class="validate white-text" name="name" id="name" type="text" value={newCharacter.name} onChange={handleChange} autoFocus={true} />
                         </div>
@@ -52,14 +59,14 @@ const NewCharacter = () => {
                 </div>
                     
                 <div class="row">
-                    <div class="input-field col s9">
-                        <h5 class="white-text">Description of Character:</h5>
+                    <div class="col s6 white-text">
+                        Description of Character:
                         <textarea class="materialize-textarea white-text" name="description" id="description" value={newCharacter.description} onChange={handleChange}/>
                     </div>                   
                 </div>
                 <div class="row">
-                    <div class="col s2">
-                        <h5 class="white-text">Affiliation:</h5>
+                    <div class="col s3 white-text">
+                        Affiliation:
                         <div class="input-field-inline">
                             <input class="validate white-text" name="location" id="description" type="text" value={newCharacter.location} onChange={handleChange}/>
                         </div>

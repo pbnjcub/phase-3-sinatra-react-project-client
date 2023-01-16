@@ -17,22 +17,30 @@ function App() {
   function changeBackground(loc) {
     if(loc == "/characters") {
       setBackImg("https://images6.alphacoders.com/673/673773.jpg")
-    }
+    } else if(loc == "/books") {
+      setBackImg("https://c4.wallpaperflare.com/wallpaper/866/229/182/spaceship-the-expanse-stargate-science-fiction-portal-hd-wallpaper-preview.jpg")
+    } else if(loc == "/books/new") {
+      setBackImg("https://c4.wallpaperflare.com/wallpaper/0/1011/688/the-expanse-space-science-fiction-tv-series-tv-hd-wallpaper-preview.jpg")
+    } else if(loc == "/characters/new") {
+      setBackImg("https://images4.alphacoders.com/673/673780.jpg")
+    } else if(loc == "/") {
+      setBackImg("https://www.syfy.com/sites/syfy/files/styles/fp_crop_1440x1080_scale_960x720/public/2021/11/theexpanse-s1-web-dynamiclead-desktop-1920x1080.jpg?h=c88edaac")
   }
+}
 
   return (
-    <div style={{ height: "100vh", backgroundImage: `url("${backImg}")`, backgroundRepeat:"no-repeat", backgroundSize:"contain, cover" }}>
+    <div style={{ height: "100vh", backgroundImage: `url("${backImg}")`, backgroundRepeat:"repeat-y", backgroundSize:"cover" }}>
       <Router>
         <div className="App" >
           <Navbar/>
           <Routes>
-            <Route exact path="/" element={<Home backImg={backImg} setBackImg={setBackImg}/>}/>
-            <Route exact path="/characters" element={ <CharacterList backImg={backImg} setBackImg={setBackImg} changeBackground = {changeBackground}/> }/>
-            <Route exact path="/books" element={ <BookList backImg={backImg} setBackImg={setBackImg}/> }/> 
-            <Route exact path="/books/new" element={ <NewBook backImg={backImg} setBackImg={setBackImg}/> }/> 
-            <Route exact path="/books/:id" element={ <BookDetail backImg={backImg} setBackImg={setBackImg}/> }/> 
-            <Route exact path="/characters/new" element={ <NewCharacter backImg={backImg} setBackImg={setBackImg}/> }/> 
-            <Route exact path="/characters/:id" element={ <CharacterDetail backImg={backImg} setBackImg={setBackImg}/> }/> 
+            <Route exact path="/" element={<Home changeBackground = {changeBackground}/>}/>
+            <Route exact path="/characters" element={ <CharacterList  changeBackground = {changeBackground}/> }/>
+            <Route exact path="/books" element={ <BookList changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/new" element={ <NewBook changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/:id" element={ <BookDetail changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id" element={ <CharacterDetail changeBackground = {changeBackground}/> }/> 
             
             {/* <Route element={<PageNotFound/>} />         */}
           </Routes>

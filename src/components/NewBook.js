@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLocation} from 'react-router-dom'
 
-const NewBook = () => {
+const NewBook = ({changeBackground}) => {
     
     const [newBook, setNewBook] = useState({
         title: "",
@@ -14,7 +15,13 @@ const NewBook = () => {
         type_of_book: ""
     })
     const navigate = useNavigate()
+    const location = useLocation();
 
+    useEffect(() => {
+        changeBackground(location.pathname)
+    }, [])
+
+    
     function handleChange(e) {
         setNewBook({
             ...newBook,
