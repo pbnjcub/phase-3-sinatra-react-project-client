@@ -18,7 +18,7 @@ const CharacterDetail = ({changeBackground}) => {
         fetchData()
             .catch(console.error)
 
-    }, [])
+    }, [id])
 
 
 
@@ -27,17 +27,27 @@ const CharacterDetail = ({changeBackground}) => {
     } else {
         const bookCards = character.books.map((book, index) => <BookCard key={index} book = {book} character={character}/>)
         return (
-            <div class="row white-text">
-                <h1><b>{character.name}</b></h1>
-                <div>
-                    <span style={{ fontWeight: 'bold' }}>Description: </span> {character.description}
-                    <br />
-                    <span style={{ fontWeight: 'bold' }}>Affiliation: </span> {character.location}
-                    <br />
-                    <h2>Books Featured in:</h2>
-                    { bookCards }
-                </div>
+            <div>
+                <div class="row white-text">
+                    <div class="col s6 m6">
+                        <h1><b>{character.name}</b></h1>
+                        <div class="col s6 m6" style={{columnGap: 100}}>
+                            <a class="waves-effect waves-light btn">Delete Character</a>
+                            <a class="waves-effect waves-light btn">Update Character</a>
+                        </div> 
+                    </div>
+                </div> 
+                <div class="row white-text">
 
+                    <div>
+                        <span style={{ fontWeight: 'bold' }}>Description: </span> {character.description}
+                        <br />
+                        <span style={{ fontWeight: 'bold' }}>Affiliation: </span> {character.location}
+                        <br />
+                        <h2>Books Featured in:</h2>
+                        { bookCards }
+                    </div>
+                </div>
             </div>
          )
     }

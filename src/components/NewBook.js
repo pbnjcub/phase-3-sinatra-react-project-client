@@ -19,9 +19,9 @@ const NewBook = ({changeBackground}) => {
 
     useEffect(() => {
         changeBackground(location.pathname)
-    }, [])
+    }, [location.pathname, changeBackground])
 
-    
+
     function handleChange(e) {
         setNewBook({
             ...newBook,
@@ -45,7 +45,6 @@ const NewBook = ({changeBackground}) => {
         }
         const resp = await fetch('http://localhost:9393/books', options)
         // const data = await resp.json()
-
         //redirect
         navigate('/books')
     }

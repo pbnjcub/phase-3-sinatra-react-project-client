@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation} from 'react-router-dom'
 import CharacterCard from './CharacterCard'
-import {NavLink} from 'react-router-dom'
+
 
 const CharacterList = ({changeBackground} ) => {
     const [ characters, setCharacters] = useState([])
@@ -17,10 +17,10 @@ const CharacterList = ({changeBackground} ) => {
         }
         fetchData()
         changeBackground(location.pathname)
-    }, [])
+    }, [location.pathname, changeBackground])
 
 
-    const characterCards = characters.map((character, index) => <CharacterCard key={index} character={character}/>)
+    const characterCards = characters.map((character, index) => <CharacterCard key={index} character={character} setCharacters={setCharacters} />)
  
     if(loading) {
         return <h1 class="white-text"><b>loading...</b></h1>
@@ -32,15 +32,6 @@ const CharacterList = ({changeBackground} ) => {
                     <div class="col s12 m6">
                         {characterCards}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col s2 m2">
-                        <NavLink to="/characters/new">
-                            <a class="waves-effect waves-light btn">
-                                New Character
-                            </a>
-                        </NavLink>     
-                    </div>                
                 </div>
             </div> 
         )

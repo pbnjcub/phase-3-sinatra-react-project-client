@@ -17,7 +17,7 @@ const BookList = ({changeBackground}) => {
         }
         fetchData()
         changeBackground(location.pathname)
-    }, [])
+    }, [location.pathname, changeBackground])
 
     const bookCards = books.map((book, index) => <BookCard key={index} book={book}/>)
  
