@@ -2,10 +2,10 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 
-const BookCard = ({ book }) => {
+const BookCard = ({ book, books, setBooks }) => {
     return (
         <li>
-            <NavLink to={`/books/${book.id}`} style={{color: "white"}}>
+            <NavLink style={{color: "white"}} to={`/books/${book.id}`} state={{books: books, setBooks: setBooks}}>
                 {book.title}
             </NavLink>
         </li>

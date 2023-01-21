@@ -2,7 +2,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 
-const CharacterCard = ({ character }) => {
+const CharacterCard = ({ character, setCharacters, deleteBook }) => {
     
     return (
 

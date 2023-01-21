@@ -19,8 +19,11 @@ const BookList = ({changeBackground}) => {
         changeBackground(location.pathname)
     }, [location.pathname, changeBackground])
 
-    const bookCards = books.map((book, index) => <BookCard key={index} book={book}/>)
+
+    const bookCards = books.map((book, index) => <BookCard key={index} book={book} books={books} setBooks={setBooks}/>)
  
+
+
     if(loading) {
         return <h1 class="white-text"><b>loading...</b></h1>
     } else {

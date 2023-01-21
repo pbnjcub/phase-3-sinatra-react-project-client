@@ -20,7 +20,13 @@ const CharacterDetail = ({changeBackground}) => {
 
     }, [id])
 
+    const deleteCharacter = () => {
+        fetch(`http://localhost:9393/characters/${id}`, {
+            method: 'DELETE',
+        });
+        
 
+    }
 
     if(loading) {
         return <h1>Loading...</h1>
@@ -32,7 +38,7 @@ const CharacterDetail = ({changeBackground}) => {
                     <div class="col s6 m6">
                         <h1><b>{character.name}</b></h1>
                         <div class="col s6 m6" style={{columnGap: 100}}>
-                            <a class="waves-effect waves-light btn">Delete Character</a>
+                            <a class="waves-effect waves-light btn" onClick={deleteCharacter}>Delete Character</a>
                             <a class="waves-effect waves-light btn">Update Character</a>
                         </div> 
                     </div>

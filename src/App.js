@@ -8,6 +8,7 @@ import NewBook from './components/NewBook';
 import BookDetail from './components/BookDetail'
 import NewCharacter from './components/NewCharacter';
 import CharacterDetail from './components/CharacterDetail';
+import EditBook from './components/EditBook';
 import PageNotFound from './components/PageNotFound';
 
 
@@ -38,7 +39,8 @@ function App() {
             <Route exact path="/characters" element={ <CharacterList  changeBackground = {changeBackground}/> }/>
             <Route exact path="/books" element={ <BookList changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/new" element={ <NewBook changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/:id" element={ <BookDetail changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/:id" element={ <BookDetail changeBackground = {changeBackground}/> }/>
+            <Route exact path="/books/:id/edit" element={ <EditBook changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id" element={ <CharacterDetail changeBackground = {changeBackground}/> }/> 
             

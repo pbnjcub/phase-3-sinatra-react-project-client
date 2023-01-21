@@ -51,7 +51,8 @@ const NewCharacter = ({changeBackground}) => {
             headers,
             body: JSON.stringify(body)
         }
-        const resp = await fetch('http://localhost:9393/characters', options)
+        const respCharacter = await fetch('http://localhost:9393/characters', options)
+        const respJoin = await fetch()
 
         navigate('/characters')
         // navigate(`/books/${bookId}`)

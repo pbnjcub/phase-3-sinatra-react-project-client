@@ -1,6 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
 import {NavLink} from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import CharacterCard from './CharacterCard'
 
@@ -8,6 +10,9 @@ const BookDetail = () => {
     const [book, setBook] = useState([])
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
+    const location = useLocation()
+    const navigate = useNavigate()
+    
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,9 +25,22 @@ const BookDetail = () => {
             .catch(console.error)
     }, [id])
 
+    const deleteBook = async id => {
+        const resp = await fetch(`http://localhost:9393/books/${id}`, { method: "DELETE"})
+        const data = await resp.json()
+        removeBook(id)
+
+
+    }
+
+    const removeBook = id => {
+        location.state.setBooks(location.state.books.filter( book => book.id !== id))
+
+    }
+
 
     if(loading) {
-        return <h1>Loading...</h1>
+        return <h1 class="white-text">Loading...</h1>
     } else {
         const characterCards = book.characters.map((character, index) => <CharacterCard key={index} character = {character} book={book}/>)
         
@@ -32,8 +50,12 @@ const BookDetail = () => {
                     <div class="col s6 m6">
                         <h1>{book.title}</h1>
                         <div class="col s6 m6">
-                            <a class="waves-effect waves-light btn">Delete Book</a>
-                            <a class="waves-effect waves-light btn">Update Book</a>
+                            <button class="waves-effect waves-light btn" onClick={() => {deleteBook(book.id); navigate(-1)}}>Delete Book</button>
+                            <NavLink to={`/books/${book.id}/edit`}>
+                                <button class="waves-effect waves-light btn">Update Book</button>
+                            </NavLink>
+                            
+                            
                         </div> 
                     </div>
                 </div> 
