@@ -1,5 +1,8 @@
 import React, { useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import BookCard from './BookCard'
 
@@ -7,6 +10,9 @@ const CharacterDetail = ({changeBackground}) => {
     const [character, setCharacter] = useState([])
     const [loading, setLoading] = useState(true)
     const {id} = useParams()
+    const navigate = useNavigate()
+    const location = useLocation()
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -20,12 +26,17 @@ const CharacterDetail = ({changeBackground}) => {
 
     }, [id])
 
-    const deleteCharacter = () => {
-        fetch(`http://localhost:9393/characters/${id}`, {
+    const deleteCharacter = async id => {
+        const resp = await fetch(`http://localhost:9393/characters/${id}`, {
             method: 'DELETE',
         });
-        
+        const data = await resp.json()
+        removeCharacter(id)
 
+    }
+
+    const removeCharacter = id => {
+        location.state.setCharacters(location.state.characters.filter( character => character.id !== id))
     }
 
     if(loading) {
@@ -38,8 +49,10 @@ const CharacterDetail = ({changeBackground}) => {
                     <div class="col s6 m6">
                         <h1><b>{character.name}</b></h1>
                         <div class="col s6 m6" style={{columnGap: 100}}>
-                            <a class="waves-effect waves-light btn" onClick={deleteCharacter}>Delete Character</a>
-                            <a class="waves-effect waves-light btn">Update Character</a>
+                            <a class="waves-effect waves-light btn" onClick={() => {deleteCharacter(character.id); navigate("/characters")}}>Delete Character</a>
+                            <NavLink to={`/characters/${character.id}/edit`}>
+                                <button class="waves-effect waves-light btn">Update Character</button>
+                            </NavLink>
                         </div> 
                     </div>
                 </div> 

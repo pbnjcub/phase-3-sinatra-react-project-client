@@ -26,7 +26,9 @@ const BookDetail = () => {
     }, [id])
 
     const deleteBook = async id => {
-        const resp = await fetch(`http://localhost:9393/books/${id}`, { method: "DELETE"})
+        const resp = await fetch(`http://localhost:9393/books/${id}`, { 
+            method: "DELETE",
+        });
         const data = await resp.json()
         removeBook(id)
 
@@ -50,12 +52,12 @@ const BookDetail = () => {
                     <div class="col s6 m6">
                         <h1>{book.title}</h1>
                         <div class="col s6 m6">
-                            <button class="waves-effect waves-light btn" onClick={() => {deleteBook(book.id); navigate(-1)}}>Delete Book</button>
+                            <button class="waves-effect waves-light btn" onClick={() => {deleteBook(book.id); navigate("/books")}}>Delete Book</button>
                             <NavLink to={`/books/${book.id}/edit`}>
                                 <button class="waves-effect waves-light btn">Update Book</button>
                             </NavLink>
                             
-                            
+ 
                         </div> 
                     </div>
                 </div> 
@@ -77,7 +79,7 @@ const BookDetail = () => {
                 </div>
                 <div class="row">
                     <div class="col s2 m2">
-                        <NavLink to={`/books/${book.id}/characters/new`}>
+                        <NavLink to={`/books/${book.id}/characters/new`} state={{book: book, setBook: setBook}}>
                             <a class="waves-effect waves-light btn">
                                 Add Character to Book
                             </a>

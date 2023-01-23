@@ -9,6 +9,7 @@ import BookDetail from './components/BookDetail'
 import NewCharacter from './components/NewCharacter';
 import CharacterDetail from './components/CharacterDetail';
 import EditBook from './components/EditBook';
+import EditCharacter from './components/EditCharacter'
 import PageNotFound from './components/PageNotFound';
 
 
@@ -43,6 +44,7 @@ function App() {
             <Route exact path="/books/:id/edit" element={ <EditBook changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id" element={ <CharacterDetail changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id/edit" element={ <EditCharacter changeBackground = {changeBackground}/> }/> 
             
             {/* <Route element={<PageNotFound/>} />         */}
           </Routes>
