@@ -13,11 +13,9 @@ const NewCharacter = ({changeBackground}) => {
         name: "",
         description: "",
         location: "",
-    })
-    const [newBookCharacter, setNewBookCharacter] = useState({
-        character_id: "",
         book_id: bookId,
     })
+    console.log(bookId)
     const navigate = useNavigate()
     const location = useLocation();
 
@@ -47,37 +45,19 @@ const NewCharacter = ({changeBackground}) => {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-        const body = newCharacter
 
         const options = {
             method: "POST",
             headers,
-            body: JSON.stringify(body)
+            body: JSON.stringify(newCharacter)
         }
         const resp = await fetch('http://localhost:9393/characters', options)
         const data = await resp.json()
-        setNewBookCharacter({
-            ...newBookCharacter,
-            character_id: data.id,
-        })
-        addJoin()
         updateBook()
         navigate(-1)
     }
 
-    const addJoin = () => {
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-        const body = newBookCharacter
-        const options = {
-            method: "POST",
-            headers,
-            body: JSON.stringify(body)
-        }
-        const resp = fetch('http://localhost:9393/bookcharacters', options)
-    }
+
 
     const updateBook = () => {
         const fetchData = async () => {
