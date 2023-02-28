@@ -2,14 +2,15 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 
 
-const CharacterCard = ({ character, setCharacters, characters }) => {
+const CharacterCard = ({ character }) => {
     
     return (
 
         <li>
-            <NavLink to={`/characters/${character.id}`} state={{characters: characters, setCharacters: setCharacters}} style={{color: "white"}}>
+            <NavLink style={{color: "white"}} to={`/characters/${character.id}`} >
                 {character.name}
             </NavLink>
+
         </li>
             
      )

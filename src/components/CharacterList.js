@@ -1,26 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
 import CharacterCard from './CharacterCard';
 
-const CharacterList = ({ changeBackground }) => {
-  const [characters, setCharacters] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
+const CharacterList = ({ characters, setCharacters}) => {
 
-  useEffect(() => {
-    async function fetchData() {
-      const resp = await fetch('http://localhost:9393/characters');
-      const data = await resp.json();
-      setCharacters(data);
-      setLoading(false);
-    }
-    fetchData();
-    changeBackground(location.pathname);
-  }, [location.pathname, changeBackground]);
-
-  if (loading) {
-    return <h1 className="white-text"><b>Loading...</b></h1>;
-  }
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const resp = await fetch('http://localhost:9393/characters');
+  //     const data = await resp.json();
+  //     setCharacters(data);
+  //     setLoading(false);
+  //   }
+  //   fetchData();
+  //   changeBackground(location.pathname);
+  // }, [location.pathname, changeBackground]);
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Navbar from './components/Navbar';
 import BookList from './components/BookList';
@@ -10,11 +10,30 @@ import NewCharacter from './components/NewCharacter';
 import CharacterDetail from './components/CharacterDetail';
 import EditBook from './components/EditBook';
 import EditCharacter from './components/EditCharacter'
-import PageNotFound from './components/PageNotFound';
 
 
 function App() {
   const [ backImg, setBackImg ] = useState("https://www.syfy.com/sites/syfy/files/styles/fp_crop_1440x1080_scale_960x720/public/2021/11/theexpanse-s1-web-dynamiclead-desktop-1920x1080.jpg?h=c88edaac")
+  const [characters, setCharacters] = useState([]);
+  const [books, setBooks] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const resp = await fetch('http://localhost:9393/books');
+      const data = await resp.json();
+      setBooks(data);
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const resp = await fetch('http://localhost:9393/characters');
+      const data = await resp.json();
+      setCharacters(data);
+    }
+    fetchData();
+  }, []);
 
   function changeBackground(loc) {
     if(loc === "/characters") {
@@ -37,13 +56,13 @@ function App() {
           <Navbar/>
           <Routes>
             <Route exact path="/" element={<Home changeBackground = {changeBackground}/>}/>
-            <Route exact path="/characters" element={ <CharacterList  changeBackground = {changeBackground}/> }/>
-            <Route exact path="/books" element={ <BookList changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/new" element={ <NewBook changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/:id" element={ <BookDetail changeBackground = {changeBackground}/> }/>
+            <Route exact path="/characters" element={ <CharacterList  characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/>
+            <Route exact path="/books" element={ <BookList books={books} setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/new" element={ <NewBook setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/:id" element={ <BookDetail books={books} setBooks={setBooks} changeBackground = {changeBackground}/> }/>
             <Route exact path="/books/:id/edit" element={ <EditBook changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/characters/:id" element={ <CharacterDetail changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id" element={ <CharacterDetail characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id/edit" element={ <EditCharacter changeBackground = {changeBackground}/> }/> 
             
             {/* <Route element={<PageNotFound/>} />         */}

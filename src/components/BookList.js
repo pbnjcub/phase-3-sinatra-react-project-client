@@ -1,28 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BookCard from './BookCard';
-import { useLocation, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const BookList = ({ changeBackground }) => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const location = useLocation();
+const BookList = ({ books, setBooks, changeBackground }) => {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const resp = await fetch('http://localhost:9393/books');
-      const data = await resp.json();
-      setBooks(data);
-      setLoading(false);
-    };
-    fetchData();
-    changeBackground(location.pathname);
-  }, [changeBackground, location.pathname]);
+  
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const resp = await fetch('http://localhost:9393/books');
+  //     const data = await resp.json();
+  //     setBooks(data);
+  //     setLoading(false);
+  //   };
+  //   fetchData();
+  //   changeBackground(location.pathname);
+  // }, [changeBackground, location.pathname]);
 
-  const renderBookCards = () => {
-    return books.map((book, index) => (
-      <BookCard key={index} book={book} books={books} setBooks={setBooks} />
-    ));
-  };
 
   return (
     <div>
@@ -30,7 +23,14 @@ const BookList = ({ changeBackground }) => {
         <h1 className="white-text">
           <b>Books</b>
         </h1>
-        <div className="col s12 m6">{renderBookCards()}</div>
+        <div className="col s12 m6">
+          {books.map((book, index) => (
+            <BookCard
+              key={index}
+              book={book}
+              setBooks={setBooks}
+            />
+          ))}</div>
       </div>
       <div className="row">
         <div className="col s2 m2">
@@ -39,7 +39,6 @@ const BookList = ({ changeBackground }) => {
           </NavLink>
         </div>
       </div>
-      {loading && <h1 className="white-text"><b>Loading...</b></h1>}
     </div>
   );
 };
