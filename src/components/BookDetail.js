@@ -1,10 +1,20 @@
-import React, { useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom'
-import {NavLink} from 'react-router-dom'
-import {useLocation} from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-
+import React, { useEffect, useState } from 'react'
+import { useParams, useLocation, useNavigate, NavLink } from 'react-router-dom'
 import CharacterCard from './CharacterCard'
+
+
+
+
+
+// import React, { useEffect, useState} from 'react'
+// import { useParams } from 'react-router-dom'
+// import {NavLink} from 'react-router-dom'
+// import {useLocation} from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+
+// import CharacterCard from './CharacterCard'
+
+
 
 const BookDetail = () => {
     const [book, setBook] = useState([])
@@ -26,6 +36,7 @@ const BookDetail = () => {
     }, [id])
 
     const deleteBook = async id => {
+        console.log("delete book")
         const resp = await fetch(`http://localhost:9393/books/${id}`, { 
             method: "DELETE",
         });
@@ -79,10 +90,8 @@ const BookDetail = () => {
                 </div>
                 <div class="row">
                     <div class="col s2 m2">
-                        <NavLink to={`/books/${book.id}/characters/new`} state={{book: book, setBook: setBook}}>
-                            <a class="waves-effect waves-light btn">
-                                Add Character to Book
-                            </a>
+                        <NavLink to={`/books/${book.id}/characters/new`} state={{book: book, setBook: setBook}} class="waves-effect waves-light btn">
+                            Add Character to Book
                         </NavLink>
                     </div>                
                 </div>
