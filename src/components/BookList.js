@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 
 const BookList = ({ books, setBooks, changeBackground }) => {
 
-  
   // useEffect(() => {
   //   const fetchData = async () => {
   //     const resp = await fetch('http://localhost:9393/books');

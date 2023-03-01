@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation} from 'react-router-dom'
 
-const NewBook = ({changeBackground, setBooks}) => {
+const NewBook = ({changeBackground, addBook}) => {
     
     const [newBook, setNewBook] = useState({
         title: "",
@@ -44,7 +44,8 @@ const NewBook = ({changeBackground, setBooks}) => {
         }
         const resp = await fetch('http://localhost:9393/books', options)
         const data = await resp.json()
-        setBooks(data)
+        addBook(data)
+
         //redirect
         navigate('/books')
     }

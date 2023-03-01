@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams, useNavigate, NavLink } from 'react-router-dom'
 import CharacterCard from './CharacterCard'
 
-const BookDetail = ({books, setBooks}) => {
+const BookDetail = ({books, removeBook}) => {
     const {id} = useParams()
     const navigate = useNavigate()
     const book = books.find(book => book.id === parseInt(id))
@@ -13,12 +13,10 @@ const BookDetail = ({books, setBooks}) => {
             method: "DELETE",
         });
         const data = await resp.json()
-        removeBook(id)
+        removeBook(book.id)
+        navigate('/books')
     }
 
-    const removeBook = id => {
-        setBooks(books.filter( book => book.id !== id))
-    }
 
 
     const characterCards = book.characters.map((character, index) => (<CharacterCard key={index} character={character} book={book} />));
@@ -29,15 +27,7 @@ const BookDetail = ({books, setBooks}) => {
             <div class="col s6 m6">
               <h1>{book.title}</h1>
               <div class="col s6 m6">
-                <button
-                  class="waves-effect waves-light btn"
-                  onClick={() => {
-                    deleteBook(book.id);
-                    navigate("/books");
-                  }}
-                >
-                  Delete Book
-                </button>
+                <button class="waves-effect waves-light btn" onClick={deleteBook}>Delete Book</button>
                 <NavLink to={`/books/${book.id}/edit`}>
                   <button class="waves-effect waves-light btn">Update Book</button>
                 </NavLink>

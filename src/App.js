@@ -35,6 +35,26 @@ function App() {
     fetchData();
   }, []);
 
+  const removeBook = id => {
+    const updatedBooks = books.filter(book => book.id !== id);
+    setBooks(updatedBooks)
+}
+
+  const addBook = newBook => {
+    const updatedBooks = [...books, newBook]
+    setBooks(updatedBooks)
+  }
+
+  const updateBook = updatedBook => {
+    const updatedBooks = books.map((book) => {
+        if(book.id === updatedBook.id) {
+            return updatedBook
+        } else {
+            return book
+        }})
+    setBooks(updatedBooks)
+}
+
   function changeBackground(loc) {
     if(loc === "/characters") {
       setBackImg("https://images6.alphacoders.com/673/673773.jpg")
@@ -58,9 +78,9 @@ function App() {
             <Route exact path="/" element={<Home changeBackground = {changeBackground}/>}/>
             <Route exact path="/characters" element={ <CharacterList  characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/>
             <Route exact path="/books" element={ <BookList books={books} setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/new" element={ <NewBook setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/:id" element={ <BookDetail books={books} setBooks={setBooks} changeBackground = {changeBackground}/> }/>
-            <Route exact path="/books/:id/edit" element={ <EditBook changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/new" element={ <NewBook addBook={addBook} setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/:id" element={ <BookDetail books={books} setBooks={setBooks} removeBook={removeBook} changeBackground = {changeBackground}/> }/>
+            <Route exact path="/books/:id/edit" element={ <EditBook books={books} updateBook={updateBook} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id" element={ <CharacterDetail characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id/edit" element={ <EditCharacter changeBackground = {changeBackground}/> }/> 
