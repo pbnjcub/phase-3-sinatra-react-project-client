@@ -6,18 +6,37 @@ const BookDetail = ({books, removeBook}) => {
     const {id} = useParams()
     const navigate = useNavigate()
     const book = books.find(book => book.id === parseInt(id))
-
-
-    const deleteBook = async id => {
-        const resp = await fetch(`http://localhost:9393/books/${id}`, { 
-            method: "DELETE",
+    console.log(book.id)   
+    function deleteBook(id) {
+        fetch(`http://localhost:9393/books/${book.id}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Book deleted:', data);
+        })
+        .catch(error => {
+            console.error('Error deleting book:', error);
         });
-        const data = await resp.json()
         removeBook(book.id)
         navigate('/books')
     }
-
-
+    // const deleteBook = async id => {
+    //     const resp = await fetch(`http://localhost:9393/books/${id}`, {
+    //         method: 'DELETE',
+    //     });
+    //     const data = await resp.json()
+    //     removeBook(book.id)
+    //     navigate('/books')
+    // }
+    // const deleteBook = async id => {
+    //     const resp = await fetch(`http://localhost:9393/books/${id}`, { 
+    //         method: 'DELETE',
+    //     });
+    //     const data = await resp.json()
+    //     removeBook(id)
+    //     navigate('/books')
+    // }
 
     const characterCards = book.characters.map((character, index) => (<CharacterCard key={index} character={character} book={book} />));
       
