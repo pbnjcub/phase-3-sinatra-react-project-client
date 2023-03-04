@@ -37,11 +37,11 @@ const EditBook = ({updateBook, books, changeBackground}) => {
             headers,
             body: JSON.stringify(body)
         }
-        const resp = await fetch(`http://localhost:9393/books/${id}`, options)
+        const resp = await fetch(`http://localhost:9393/books/${book.id}`, options)
         const data = await resp.json()
         updateBook(data)
         //redirect
-        navigate(`/books/${id}`)
+        navigate(`/books/${book.id}`)
     }
 
     return (

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 
 import BookCard from './BookCard'
 
-const CharacterDetail = ({characters, setCharacters}) => {
+const CharacterDetail = ({characters, removeCharacter}) => {
     const {id} = useParams()
     const navigate = useNavigate()
     const character = characters.find(character => character.id === parseInt(id))
@@ -27,17 +27,12 @@ const CharacterDetail = ({characters, setCharacters}) => {
             method: 'DELETE',
         });
         const data = await resp.json()
-        removeCharacter(id)
+        removeCharacter(data)
 
     }
 
-    const removeCharacter = id => {
-        setCharacters(characters.filter( character => character.id !== id))
-    }
 
-    // const removeCharacter = id => {
-    //     location.state.setCharacters(location.state.characters.filter( character => character.id !== id))
-    // }
+
     const bookCards = character.books.map((book, index) => <BookCard key={index} book = {book} character={character}/>)
     return (
         <div>

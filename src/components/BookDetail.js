@@ -5,8 +5,7 @@ import CharacterCard from './CharacterCard'
 const BookDetail = ({books, removeBook}) => {
     const {id} = useParams()
     const navigate = useNavigate()
-    const book = books.find(book => book.id === parseInt(id))
-    console.log(book.id)   
+    const book = books.find(book => book.id === parseInt(id)) 
     function deleteBook(id) {
         fetch(`http://localhost:9393/books/${book.id}`, {
             method: 'DELETE'

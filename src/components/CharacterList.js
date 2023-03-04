@@ -3,17 +3,6 @@ import CharacterCard from './CharacterCard';
 
 const CharacterList = ({ characters, setCharacters}) => {
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const resp = await fetch('http://localhost:9393/characters');
-  //     const data = await resp.json();
-  //     setCharacters(data);
-  //     setLoading(false);
-  //   }
-  //   fetchData();
-  //   changeBackground(location.pathname);
-  // }, [location.pathname, changeBackground]);
-
   return (
     <div>
       <div className="row">

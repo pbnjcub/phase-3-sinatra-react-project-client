@@ -45,6 +45,17 @@ function App() {
     setBooks(updatedBooks)
   }
 
+  const addChar = newChar => {
+    const updatedChars = [...characters, newChar]
+    setCharacters(updatedChars)
+  }
+
+  const removeCharacter = deletedChar => {
+    const updatedChars = characters.filter( character => character.id !== deletedChar.id)
+    setCharacters(updatedChars)
+}
+
+
   const updateBook = updatedBook => {
     const updatedBooks = books.map((book) => {
         if(book.id === updatedBook.id) {
@@ -81,9 +92,9 @@ function App() {
             <Route exact path="/books/new" element={ <NewBook addBook={addBook} setBooks={setBooks} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:id" element={ <BookDetail books={books} setBooks={setBooks} removeBook={removeBook} changeBackground = {changeBackground}/> }/>
             <Route exact path="/books/:id/edit" element={ <EditBook books={books} updateBook={updateBook} changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/characters/:id" element={ <CharacterDetail characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/characters/:id/edit" element={ <EditCharacter changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter addChar={addChar} updateBook={updateBook} books={books} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id" element={ <CharacterDetail removeCharacter={removeCharacter} characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id/edit" element={ <EditCharacter books={books} changeBackground = {changeBackground}/> }/> 
             
             {/* <Route element={<PageNotFound/>} />         */}
           </Routes>
