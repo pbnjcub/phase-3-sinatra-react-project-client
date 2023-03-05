@@ -104,7 +104,7 @@ const CharacterDetail = ({characters, removeCharacter, books, setBooks, updatedB
                 <div class="col s6 m6">
                     <h1><b>{character.name}</b></h1>
                     <div class="col s6 m6" style={{columnGap: 100}}>
-                        <a class="waves-effect waves-light btn" onClick={deleteCharacter}>Delete Character</a>
+                        <button class="waves-effect waves-light btn" onClick={deleteCharacter}>Delete Character</button>
                         <NavLink to={`/characters/${character.id}/edit`}>
                             <button class="waves-effect waves-light btn">Update Character</button>
                         </NavLink>

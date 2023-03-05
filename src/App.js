@@ -65,6 +65,16 @@ function App() {
     setBooks(updatedBooks)
 }
 
+const updateCharacter = updatedCharacter => {
+  const updatedCharacters = characters.map((character) => {
+      if(character.id === updatedCharacter.id) {
+          return updatedCharacter
+      } else {
+          return character
+      }})
+  setCharacters(updatedCharacters)
+}
+
 
 
   function changeBackground(loc) {
@@ -95,7 +105,7 @@ function App() {
             <Route exact path="/books/:id/edit" element={ <EditBook books={books} updateBook={updateBook} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/books/:bookId/characters/new" element={ <NewCharacter addChar={addChar} updateBook={updateBook} books={books} changeBackground = {changeBackground}/> }/> 
             <Route exact path="/characters/:id" element={ <CharacterDetail updateBook={updateBook} books={books} setBooks={setBooks} removeCharacter={removeCharacter} characters={characters} setCharacters={setCharacters} changeBackground = {changeBackground}/> }/> 
-            <Route exact path="/characters/:id/edit" element={ <EditCharacter books={books} changeBackground = {changeBackground}/> }/> 
+            <Route exact path="/characters/:id/edit" element={ <EditCharacter characters={characters} updateCharacter={updateCharacter} books={books} changeBackground = {changeBackground}/> }/> 
             
             {/* <Route element={<PageNotFound/>} />         */}
           </Routes>

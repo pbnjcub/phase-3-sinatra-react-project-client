@@ -20,22 +20,7 @@ const BookDetail = ({books, removeBook}) => {
         removeBook(book.id)
         navigate('/books')
     }
-    // const deleteBook = async id => {
-    //     const resp = await fetch(`http://localhost:9393/books/${id}`, {
-    //         method: 'DELETE',
-    //     });
-    //     const data = await resp.json()
-    //     removeBook(book.id)
-    //     navigate('/books')
-    // }
-    // const deleteBook = async id => {
-    //     const resp = await fetch(`http://localhost:9393/books/${id}`, { 
-    //         method: 'DELETE',
-    //     });
-    //     const data = await resp.json()
-    //     removeBook(id)
-    //     navigate('/books')
-    // }
+
 
     const characterCards = book.characters.map((character, index) => (<CharacterCard key={index} character={character} book={book} />));
       
